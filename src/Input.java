@@ -1,8 +1,15 @@
 public class Input {
-
-    public void testOne() throws Exception{
-        int i = 0;
-        int c=1/i;
-        System.out.println(c+"第2次测试");
+    String str="str";
+    public void method() throws NumberFormatException{
+        try {
+            Integer num = Integer.valueOf(str);
+            System.out.println(num);
+        } catch (NumberFormatException e) {
+            //throw new NumberFormatException("转化异常");
+        }finally {
+            System.out.println("此处必执行");
+        }
+        /*Integer num = Integer.valueOf(str);
+        System.out.println(num);*/
     }
 }

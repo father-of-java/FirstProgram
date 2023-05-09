@@ -2,6 +2,7 @@ import javax.print.attribute.HashAttributeSet;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.SimpleFormatter;
 
 public class Main {
@@ -31,8 +32,15 @@ public class Main {
         }
         String timeTwo = formatter.format(System.currentTimeMillis());
         System.out.println("现在时间为："+timeTwo);
-        CompletableFuture<String> stringCompletableFuture = CompletableFuture.supplyAsync(() -> myself("测试开始:"));
-        System.out.println(stringCompletableFuture.toCompletableFuture());
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> myself("测试开始:"));
+        try {
+            future.get();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(future.toCompletableFuture());
         ThreadTest2 threadTest2 =new ThreadTest2();
         Thread thread1 =new Thread(threadTest2);
         thread1.start();
@@ -40,8 +48,9 @@ public class Main {
             thread1.join();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
+            
         }
-        System.out.println(stringCompletableFuture);
+        System.out.println(future);
         mapSet.add(mapOne);
         System.out.println(mapSet.toString());
     }
