@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamTest {
@@ -14,14 +15,7 @@ public class StreamTest {
         list.forEach((String s)->{
             System.out.println(s);
         });
-        Consumer<String> stringConsumer = new Test();
-        System.out.println(stringConsumer);
-        list.forEach(stringConsumer);
-       // System.out.println(list);
-
-
-
-       /* System.out.println(list);
+               /* System.out.println(list);
         Stream<String> stream = list.stream();
         stream.filter(new Predicate<String>() {
             @Override
@@ -29,5 +23,13 @@ public class StreamTest {
                 return false;
             }
         });*/
+        System.out.println(list.stream().filter(num->
+                num.contains("三")).collect(Collectors.toList()));
+
+       // System.out.println(list);
+
+
+
+
     }
 }
