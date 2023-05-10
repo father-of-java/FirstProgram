@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 public class StreamTest {
     public static void main(String[] args) {
-        String[] arr = {"张颜宇", "张三", "李四", "赵五", "刘六", "王七"};
+        String[] arr = {"张颜宇", "张三", "张三", "赵五", "刘六", "王七"};
         List<String> list = new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
             list.add(arr[i]);
@@ -24,7 +24,7 @@ public class StreamTest {
             }
         });*/
         System.out.println(list.stream().filter(num->
-                num.contains("三")).collect(Collectors.toList()));
+                num.contains("三")).collect(Collectors.toSet()));
 
        // System.out.println(list);
 
